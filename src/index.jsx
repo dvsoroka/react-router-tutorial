@@ -53,11 +53,9 @@ function About(props) {
     )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-
-  <App />
-    
-);
+ReactDOM
+  .createRoot(document.getElementById('root'))
+  .render(<App />);
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //     <BrowserRouter>
