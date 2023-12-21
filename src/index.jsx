@@ -1,79 +1,57 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import { BrowserRouter as Router } from "react-router-dom"            // as Router, or Routes, or Route 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
-import { useState } from 'react'
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About"
+
+/**
+ * Challenge:
+ * https://scrimba.com/learn/reactrouter6/vanlife-project-bootstrapping-co8bc40b191eec875ecf00b23
+ * Bootstrap the VanLife project by creating the first 2 routes:
+ * Home and About.
+ * 
+ * Also include the navbar that can link between the two routes.
+ * For now, you'll either need to copy/paste the navbar code
+ * to both Home and About pages, or you'll need to find a place
+ * to put it where it can be shared between the two pages.
+ * (Don't overthink this part - just do whatever is easiest for
+ * you because we'll learn a better approach very soon)
+ * 
+ * Review challenge: do all the CSS yourself based on the design
+ * linked in the slides.
+ */
 
 function App() {
-  const [count, setCount] = useState(0)
-  
   return (
     <BrowserRouter>
-      <nav>
-        <Link className='someClass' to="/">Home</Link>
-        <Link className='someClass' to="about">About</Link>
-
-      </nav>
+      <header>
+        {/* <Link to="/">#VANLIFE</Link> */}
+        <Link className="site-logo" to="/">#VanLife</Link>
+        <nav>
+          {/* <Link to="/">Home</Link> */}
+          <Link to="/about">About</Link>
+        </nav>
+      </header>
       <Routes>
-        <Route 
-          path="/" 
-          element={
-            <Home 
-              count={count} 
-              setCount={setCount}
-              />
-          } />   
-        <Route path="/about" element={<About count={count}/>} /> 
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
       </Routes>
     </BrowserRouter>
   )
 }
 
+// function Home() {
+//   return (
+//     <h1>Start here</h1>
+//   )
+// }
 
-function Home(props) {
-//  console.log(props)
-  let count = props.count
-  return (
-    <div>
-        <h1>Hello, React Router!</h1>
-        
-        <button onClick={() => props.setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-    </div>
-  )
-}
-
-function About(props) {
-    return (
-      <>
-        <h1>About page goes here! 🎉</h1>
-        <button>count is {props.count}</button>
-      </>
-    )
-}
+// function About() {
+//   return (
+//     <h1>About page goes here!</h1>
+//   )
+// }
 
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(<App />);
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//     <BrowserRouter>
-//         <App />
-//     </BrowserRouter>
-// );
-
-/*
-npm create vite@latest
-√ Project name: ... react-router-tutorial
-√ Select a framework: » React
-√ Select a variant: » JavaScript
-cd react-router-tutorial
-npm install
-npm run dev
-
-
-npm install react-router-dom localforage match-sorter sort-by
-npm run dev
-
-*/
